@@ -1,0 +1,6 @@
+1/2/2023
+Spent most of the time dealing with importing the data into SQL. Originally, I was going to just read straight from the
+CSV files themselves, but I realize putting the data into a DB would both ben more efficient for reading and querying,
+but also allow me to work on more varied skills, mainly database management and admin duties. Importing the data proved
+more timely than desired, but I was able to get the gamelog info from 1920 successfully imported, as anything before
+had quite unfinished data. Next, I'll try to get python set up to read and retrieve data from the DB.

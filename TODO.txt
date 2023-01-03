@@ -1,0 +1,473 @@
+Following objectives for this project:
+
+- Display all home games for a team during a specific season
+
+- Display one home game for a team during a specific season based on date
+
+- Format the score for the game to appear in a standard "box score" format
+
+- Include a -help input to allow people to see acceptable inputs
+
+- Allow for a range of dates to find the
+
+
+
+
+
+RETROSHEET: STEP-BY-STEP EXAMPLE
+
+
+The following step-by-step example is in response to several
+requests for more detailed instructions on using Retrosheet
+data and the programs on this web site. The tasks illustrated
+probably will not be exactly what you want to do, but they
+should show you how to generate box scores and extract data
+that can be imported into spreadsheet and database software
+for further processing and analysis. You may want to print
+this page for future reference.
+
+Comments, suggestions, and improvements are welcomed. You
+can send an e-mail using the address at the bottom of our
+home page.
+
+Press the back button on your browser to return to the previous
+page when done with this one.
+
+-------------
+
+I don't think I can take the time to write a complete
+and fairly foolproof set of instructions that a 5th grader
+can follow.  However, here is a list of steps to show you
+how to generate the Tigers box scores at Fenway in 1982.
+
+1) If you haven't done so already, download the following
+files from our site.  You should put them in the just one
+directory on your hard disk, which probably should be
+one set up to deal with retrosheet files.  I'll use
+C:\retro as the example, but you can put it in any
+directory that suits you.
+
+a) the program files (under Tools on the site)
+bevent.zip (which expands to bevent.exe)
+box.zip
+bgame.zip
+
+[Note you click on bevent.exe, box.exe, bgame.exe
+to do the downloads.]
+
+The most recent versions of Windows can "unzip" files
+using standard file management tools. If your operating
+system can't do that, you can download the program file
+pkunzip.exe.
+
+b) data files (under Game Data), choose a year. We will use
+1982 as an example, so click on that year. Doing so will
+put the file 1982eve.zip on your hard disk
+
+2) If you did not download to the C:\retro directory, move
+the downloaded files to this directory.  You can do this using
+Windows.
+
+3) Now you will need to use DOS. The way to get to it varies
+among the Windows versions, and it may be called getting a
+"command prompt." Once you have done it,  A "DOS Window" should
+open on your screen with a prompt that looks like C:\WINDOWS>
+(it may look a little different).  If it is small, you may be able
+to enlage it by clicking on the box just to the left of the X
+in the upper right corner.
+
+4) Move to the retro directory (following my example directory name)
+by typing "cd \retro" and pressing the Enter key.  The prompt should
+now look like "C:\retro>".
+
+5) The next step is to unzip the files you downloaded if you have
+not already done so. You should be able to do that using File
+Explorer in Windows. You can also do so with the following four commands
+entered from the DOS prompt. Press enter after each one:
+
+[Note: DOS commands can be fussy; be sure to leave spaces where shown
+and no spaces where shown.  If you get a message indicating that
+something does not work right, then retype the command and try again.]
+
+a) pkunzip bgame.zip
+b) pkunzip bevent.zip
+c) pkunzip box.zip
+d) pkunzip 1982eve.zip
+
+6) Use bgame to get a list of all games played at Boston:
+
+bgame -y 1982 1982bos.eva >82bos.txt  (press Enter)
+
+The ">82bos.txt" causes the output to be written to the file 82bos.txt
+for further reference.  You can use a different name if you prefer.  Also
+if you end the command with ">prn" instead, the list of games will be
+printed on your printer.  You may want to do it both ways.  If your file
+name ends in ".txt" you can view the file by finding it a Windows file list
+(keep the DOS window open) by double clicking on its name or icon.  At that
+point, another window should open up showing the contents of the file.
+
+7) Find the games the Tigers played.  You can look at the file or printout
+or use the search feature in the program (NotePad or WordPad) that opened
+the file to look for DET.  I have already done it, and the Tigers played
+at Fenway June 21-23 (three games) and Sept 10-12 (three games).  I can tell
+the dates by the game IDs at the left of each line: BOS198206210. The zero
+at the end indicates that it was a single game.  Double header games end in
+a 1 or a 2.
+
+8) We can make the box scores with two commands in the DOS window, one for
+each series:
+
+box -y 1982 -s 0621 -e 0623 82bos.eva >box1.txt
+box -y 1982 -s 0910 -e 0912 82bos.eva >box2.txt
+
+As before, you can use >prn at the end instead to print the box scores.
+
+To see what the -y 1982, etc. means (if you can't guess), you can enter
+the command box -h and it will display a brief list of the program options
+and command syntax.  For example, if you wanted to make all the box scores
+for Red Sox home games, you could enter the command
+
+box -y 1982 82bos.eva >bos82box.txt
+
+[Note: due to how DOS works, do not use more than 8 characters before the .txt]
+
+9) If you want to try to put together the data for how the Tigers did in Fenway,
+the first step would be to extact the play-by-play records for the six games.
+This can be done using bevent, and the syntax is similar to that for box:
+
+bevent -y 1982 -s 0621 -e 0623 82bos.eva >detdata1.txt
+bevent -y 1982 -s 0910 -e 0912 82bos.eva >detdata2.txt
+
+That will produce two files that probably look almost nonsensical if you view
+them as above.  However, they can be read into database or spreadsheet programs
+for further processing.  At this point, I am not going to be able to give you
+directions.  I will refer you to the documentation on the web site for information
+about the output of the bevent program in the two files, but it may not help you
+a whole lot.  If I were going to get data on team performance in each park, I
+would either write a program in BASIC to pull everything together or do a fair
+amount of sorting and aggregating using a spreadsheet or database program.
+
+I hope this gets you at least part of the way to your goal.  I can try to answer
+questions, but I am not going to be able to provide any more detailed directions
+like those above.  As I said before, our data are not easy to use (except for
+making box scores) and require a fair amount of additional processing in most
+cases.
+
+Good luck. I hope you have some fun doing this.
+
+Mark
+
+Field(s)  Meaning
+    1     Date in the form "yyyymmdd"
+    2     Number of game:
+             "0" -- a single game
+             "1" -- the first game of a double (or triple) header
+                    including seperate admission doubleheaders
+             "2" -- the second game of a double (or triple) header
+                    including seperate admission doubleheaders
+             "3" -- the third game of a triple-header
+             "A" -- the first game of a double-header involving 3 teams
+             "B" -- the second game of a double-header involving 3 teams
+    3     Day of week  ("Sun","Mon","Tue","Wed","Thu","Fri","Sat")
+  4-5     Visiting team and league
+    6     Visiting team game number
+          For this and the home team game number, ties are counted as
+          games and suspended games are counted from the starting
+          rather than the ending date.
+  7-8     Home team and league
+    9     Home team game number
+10-11     Visiting and home team score (unquoted)
+   12     Length of game in outs (unquoted).  A full 9-inning game would
+          have a 54 in this field.  If the home team won without batting
+          in the bottom of the ninth, this field would contain a 51.
+   13     Day/night indicator ("D" or "N")
+   14     Completion information.  If the game was completed at a
+          later date (either due to a suspension or an upheld protest)
+          this field will include:
+             "yyyymmdd,park,vs,hs,len" Where
+          yyyymmdd -- the date the game was completed
+          park -- the park ID where the game was completed
+          vs -- the visitor score at the time of interruption
+          hs -- the home score at the time of interruption
+          len -- the length of the game in outs at time of interruption
+          All the rest of the information in the record refers to the
+          entire game.
+   15     Forfeit information:
+             "V" -- the game was forfeited to the visiting team
+             "H" -- the game was forfeited to the home team
+             "T" -- the game was ruled a no-decision
+   16     Protest information:
+             "P" -- the game was protested by an unidentified team
+             "V" -- a disallowed protest was made by the visiting team
+             "H" -- a disallowed protest was made by the home team
+             "X" -- an upheld protest was made by the visiting team
+             "Y" -- an upheld protest was made by the home team
+          Note: two of these last four codes can appear in the field
+          (if both teams protested the game).
+   17     Park ID
+   18     Attendance (unquoted)
+   19     Time of game in minutes (unquoted)
+20-21     Visiting and home line scores.  For example:
+             "010000(10)0x"
+          Would indicate a game where the home team scored a run in
+          the second inning, ten in the seventh and didn't bat in the
+          bottom of the ninth.
+22-38     Visiting team offensive statistics (unquoted) (in order):
+             at-bats
+             hits
+             doubles
+             triples
+             homeruns
+             RBI
+             sacrifice hits.  This may include sacrifice flies for years
+                prior to 1954 when sacrifice flies were allowed.
+             sacrifice flies (since 1954)
+             hit-by-pitch
+             walks
+             intentional walks
+             strikeouts
+             stolen bases
+             caught stealing
+             grounded into double plays
+             awarded first on catcher's interference
+             left on base
+39-43     Visiting team pitching statistics (unquoted)(in order):
+             pitchers used ( 1 means it was a complete game )
+             individual earned runs
+             team earned runs
+             wild pitches
+             balks
+44-49     Visiting team defensive statistics (unquoted) (in order):
+             putouts.  Note: prior to 1931, this may not equal 3 times
+                the number of innings pitched.  Prior to that, no
+                putout was awarded when a runner was declared out for
+                being hit by a batted ball.
+             assists
+             errors
+             passed balls
+             double plays
+             triple plays
+50-66     Home team offensive statistics
+67-71     Home team pitching statistics
+72-77     Home team defensive statistics
+78-79     Home plate umpire ID and name
+80-81     1B umpire ID and name
+82-83     2B umpire ID and name
+84-85     3B umpire ID and name
+86-87     LF umpire ID and name
+88-89     RF umpire ID and name
+          If any umpire positions were not filled for a particular game
+          the fields will be "","(none)".
+90-91     Visiting team manager ID and name
+92-93     Home team manager ID and name
+94-95     Winning pitcher ID and name
+96-97     Losing pitcher ID and name
+98-99     Saving pitcher ID and name--"","(none)" if none awarded
+100-101   Game Winning RBI batter ID and name--"","(none)" if none
+          awarded
+102-103   Visiting starting pitcher ID and name
+104-105   Home starting pitcher ID and name
+106-132   Visiting starting players ID, name and defensive position,
+          listed in the order (1-9) they appeared in the batting order.
+133-159   Home starting players ID, name and defensive position
+          listed in the order (1-9) they appeared in the batting order.
+  160     Additional information.  This is a grab-bag of informational
+          items that might not warrant a field on their own.  The field
+          is alpha-numeric. Some items are represented by tokens such as:
+             "HTBF" -- home team batted first.
+             Note: if "HTBF" is specified it would be possible to see
+             something like "01002000x" in the visitor's line score.
+          Changes in umpire positions during a game will also appear in
+          this field.  These will be in the form:
+             umpchange,inning,umpPosition,umpid with the latter three
+             repeated for each umpire.
+          These changes occur with umpire injuries, late arrival of
+          umpires or changes from completion of suspended games. Details
+          of suspended games are in field 14.
+  161     Acquisition information:
+             "Y" -- we have the complete game
+             "N" -- we don't have any portion of the game
+             "D" -- the game was derived from box score and game story
+             "P" -- we have some portion of the game.  We may be missing
+                    innings at the beginning, middle and end of the game.
+
+Missing fields will be NULL.
+
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/output.csv' IGNORE
+INTO TABLE baseball_stats.game_logs
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n';
+
+
+SELECT @@GLOBAL.sql_mode;
+SELECT @@SESSION.sql_mode;
+
+SET @@global.sql_mode= 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+
+
+CREATE TABLE baseball_stats.game_logs (
+    gameDate DATE NOT NULL,
+    gameNumber int,
+    dayOfWeek CHAR(3) NOT NULL,
+    visitingTeam CHAR(3) NOT NULL,
+    visitingLeague CHAR(2) NOT NULL,
+    visitingGameNumber INT NOT NULL,
+    homeTeam CHAR(3) NOT NULL,
+    homeLeague CHAR(2) NOT NULL,
+    homeGameNumber INT NOT NULL,
+    visitingScore INT NOT NULL,
+    homeScore INT NOT NULL,
+    gameLength INT,
+    dayNight CHAR(1),
+    completedLater VARCHAR(255),
+    forfeitInfo CHAR(1),
+    protestInfo VARCHAR(3),
+    parkId VARCHAR(20) NOT NULL,
+    attendance INT,
+    gameTimeLength INT,
+    visitingLineScore VARCHAR(50),
+    homeLineScore VARCHAR(50),
+    vAtBats INT,
+    vHits INT,
+    vDoubles INT,
+    vTriples INT,
+    vHomeRuns INT,
+    vRBI INT,
+    vSacHits INT,
+    vSacFlies INT,
+    vHBP INT,
+    vWalks INT,
+    vIWalks INT,
+    vStrikeouts INT,
+    vStolenBases INT,
+    vCaughtStealing INT,
+    vGroundIntoDP INT,
+    vFirstOnCatcherInt INT,
+    vLeftOnBase INT,
+    vPitchersUsed INT,
+    vIndivER INT,
+    vTeamER INT,
+    vWildPitches INT,
+    vBalks INT,
+    vPutouts INT,
+    vAssists INT,
+    vErrors INT,
+    vPassedBalls INT,
+    vDoublePlays INT,
+    vTriplePlays INT,
+    hAtBats INT,
+    hHits INT,
+    hDoubles INT,
+    hTriples INT,
+    hHomeRuns INT,
+    hRBI INT,
+    hSacHits INT,
+    hSacFlies INT,
+    hHBP INT,
+    hWalks INT,
+    hIWalks INT,
+    hStrikeouts INT,
+    hStolenBases INT,
+    hCaughtStealing INT,
+    hGroundIntoDP INT,
+    hFirstOnCatcherInt INT,
+    hLeftOnBase INT,
+    hPitchersUsed INT,
+    hIndivER INT,
+    hTeamER INT,
+    hWildPitches INT,
+    hBalks INT,
+    hPutouts INT,
+    hAssists INT,
+    hErrors INT,
+    hPassedBalls INT,
+    hDoublePlays INT,
+    hTriplePlays INT,
+    homeplateUmpId VARCHAR(100),
+    homeplateUmpName VARCHAR(100),
+    firstbaseUmpId VARCHAR(100),
+    firstbaseUmpName VARCHAR(100),
+    secondbaseUmpId VARCHAR(100),
+    secondbaseUmpName VARCHAR(100),
+    thirdbaseUmpId VARCHAR(100),
+    thirdbaseUmpName VARCHAR(100),
+    leftFieldUmpId VARCHAR(100),
+    leftFieldUmpName VARCHAR(100),
+    rightFieldUmpId VARCHAR(100),
+    rightFieldUmpName VARCHAR(100),
+    vManagerId VARCHAR(100),
+    vManagerName VARCHAR(100),
+    hManagerId VARCHAR(100),
+    hManagerName VARCHAR(100),
+    wPitcherId VARCHAR(100),
+    wPitcherName VARCHAR(100),
+    lPitcherId VARCHAR(100),
+    lPitcherName VARCHAR(100),
+    savingPitcherId VARCHAR(100),
+    savingPitcherName VARCHAR(100),
+    gameWinningRBIBatterId VARCHAR(100),
+    gameWinningRBIBatterName VARCHAR(100),
+    vStarterID VARCHAR(100),
+    vStarterName VARCHAR(100),
+    hStarterID VARCHAR(100),
+    hStarterName VARCHAR(100),
+    vFirstBattingId VARCHAR(100),
+    vFirstBattingName VARCHAR(100),
+    vFirstBattingPosition INT,
+    vSecondBattingId VARCHAR(100),
+    vSecondBattingName VARCHAR(100),
+    vSecondBattingPosition INT,
+    vThirdBattingId VARCHAR(100),
+    vThirdBattingName VARCHAR(100),
+    vThirdBattingPosition INT,
+    vFourthBattingId VARCHAR(100),
+    vFourthBattingName VARCHAR(100),
+    vFourthBattingPosition INT,
+    vFifthBattingId VARCHAR(100),
+    vFifthBattingName VARCHAR(100),
+    vFifthBattingPosition INT,
+    vSixthBattingId VARCHAR(100),
+    vSixthBattingName VARCHAR(100),
+    vSixthBattingPosition INT,
+    vSeventhBattingId VARCHAR(100),
+    vSeventhBattingName VARCHAR(100),
+    vSeventhBattingPosition INT,
+    vEighthBattingId VARCHAR(100),
+    vEighthBattingName VARCHAR(100),
+    vEighthBattingPosition INT,
+    vNinthBattingId VARCHAR(100),
+    vNinthBattingName VARCHAR(100),
+    vNinthBattingPosition INT,
+    hFirstBattingId VARCHAR(100),
+    hFirstBattingName VARCHAR(100),
+    hFirstBattingPosition INT,
+    hSecondBattingId VARCHAR(100),
+    hSecondBattingName VARCHAR(100),
+    hSecondBattingPosition INT,
+    hThirdBattingId VARCHAR(100),
+    hThirdBattingName VARCHAR(100),
+    hThirdBattingPosition INT,
+    hFourthBattingId VARCHAR(100),
+    hFourthBattingName VARCHAR(100),
+    hFourthBattingPosition INT,
+    hFifthBattingId VARCHAR(100),
+    hFifthBattingName VARCHAR(100),
+    hFifthBattingPosition INT,
+    hSixthBattingId VARCHAR(100),
+    hSixthBattingName VARCHAR(100),
+    hSixthBattingPosition INT,
+    hSeventhBattingId VARCHAR(100),
+    hSeventhBattingName VARCHAR(100),
+    hSeventhBattingPosition INT,
+    hEighthBattingId VARCHAR(100),
+    hEighthBattingName VARCHAR(100),
+    hEighthBattingPosition INT,
+    hNinthBattingId VARCHAR(100),
+    hNinthBattingName VARCHAR(100),
+    hNinthBattingPosition INT,
+	additionalInfo VARCHAR(255),
+    completenessInfo CHAR(1) NOT NULL
+);
+
