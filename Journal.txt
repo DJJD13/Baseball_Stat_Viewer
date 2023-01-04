@@ -4,3 +4,16 @@ CSV files themselves, but I realize putting the data into a DB would both ben mo
 but also allow me to work on more varied skills, mainly database management and admin duties. Importing the data proved
 more timely than desired, but I was able to get the gamelog info from 1920 successfully imported, as anything before
 had quite unfinished data. Next, I'll try to get python set up to read and retrieve data from the DB.
+
+1/3/2023
+With the database set up, I could now start accessing and reading from it. After setting up a python MySQL connection,
+I started by simply retrieving one row from the table. Once I confirmed it worked, I began to build a query that could
+be built dynamically with user inputs. First, I made it to where a person could input a year and team, and it would
+return the first 5 games of the season for that team. Then, I added an ability to choose the specific amount of games
+the user would like returned. I also added a box score style layout for each game, split into an array and displayed
+as one would expect from a baseball box-score. I finally made it to where it counts both the teams home and away games,
+instead of just home games. I added displays to show the record over the set amount of games, the total runs scored and
+runs allowed, and the average of both stats over that time.
+Found an issue where I had uploaded duplicates of many of the games, nearly doubling the database size. Found out about
+it, truncated the table, and uploaded the proper amount of data (Thanks, Jobert).
+Changed the query string to use f-string, instead of awkward variable insertion

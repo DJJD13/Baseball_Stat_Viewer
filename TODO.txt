@@ -1,15 +1,22 @@
 Following objectives for this project:
 
-- Display all home games for a team during a specific season
+- Display all home games for a team during a specific season - DONE
 
 - Display one home game for a team during a specific season based on date
 
-- Format the score for the game to appear in a standard "box score" format
+- Format the score for the game to appear in a standard "box score" format - DONE
 
 - Include a -help input to allow people to see acceptable inputs
 
-- Allow for a range of dates to find the
+- Allow for a range of dates to find the stats over that time
 
+- Allow for Team Names and Abbreviations to be acceptable inputs
+
+- Find the ERA for a specific pitcher over a number of games
+
+- Find the team batting average over a range of games
+
+- Find various hitting statistics over a range of games
 
 
 
