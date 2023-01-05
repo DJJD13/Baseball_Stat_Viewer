@@ -79,7 +79,7 @@ while True:
     print()
 
     queryGame = f'SELECT visitingTeam, visitingScore, homeTeam, homeScore, visitingLineScore, homeLineScore, vAtBats, ' \
-                f'vHits, vDoubles, vTriples, vHomeRuns, vRBI,  hAtBats, hHits, hDoubles, hTriples, hHomeRuns, hRBI ' \
+                f'vHits, vDoubles, vTriples, vHomeRuns, vRBI, hAtBats, hHits, hDoubles, hTriples, hHomeRuns, hRBI ' \
                 f'FROM game_logs ' \
                 f'WHERE (homeTeam = \'{team}\' OR visitingTeam = \'{team}\') AND ' \
                 f'(gameDate >= \'{year_begin}\' AND gameDate <= \'{year_end}\') ORDER BY gameDate ' \
