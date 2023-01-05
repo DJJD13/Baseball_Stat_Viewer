@@ -1,2 +1,2 @@
-# Baseball_Stat_Viewer
-Personal Portfolio Porject to generate and fetch baseball stats
+# Baseball Stat Viewer
+Personal Portfolio Project to generate and fetch baseball stats

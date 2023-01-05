@@ -17,3 +17,12 @@ runs allowed, and the average of both stats over that time.
 Found an issue where I had uploaded duplicates of many of the games, nearly doubling the database size. Found out about
 it, truncated the table, and uploaded the proper amount of data (Thanks, Jobert).
 Changed the query string to use f-string, instead of awkward variable insertion
+
+1/4/2023
+Today, I decided to start refactoring some code into other files and methods. The main chunk involved the code that
+generates the box score layout, as well as calculating the basic stats like runs scored, against, etc. I also added
+fields to the SQL query to retrieve hitting stats like doubles, triples, HRs, etc. but have not yet gotten to
+implementing them. I then refactored the final printing of the final stats into a separate method as well. I added
+some basic help functions such as '--help' to show proper formatting for dates and team abbreviations. I then added a
+dictionary that has keys of the team abbreviations, which correspond to a nested dictionary with the team city and name.
+The goal is to use this dictionary to print more readable names for the final stat printouts

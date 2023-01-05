@@ -2,13 +2,13 @@ Following objectives for this project:
 
 - Display all home games for a team during a specific season - DONE
 
-- Display one home game for a team during a specific season based on date
+- Display one home game for a team during a specific season based on date - DONE
 
 - Format the score for the game to appear in a standard "box score" format - DONE
 
 - Include a -help input to allow people to see acceptable inputs
 
-- Allow for a range of dates to find the stats over that time
+- Allow for a range of dates to find the stats over that time - DONE
 
 - Allow for Team Names and Abbreviations to be acceptable inputs
 
@@ -17,6 +17,8 @@ Following objectives for this project:
 - Find the team batting average over a range of games
 
 - Find various hitting statistics over a range of games
+
+- Specify which stat you want to show (Team BA, Total Runs, Total Home Runs, etc.)
 
 
 
