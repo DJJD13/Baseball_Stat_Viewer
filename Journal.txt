@@ -25,4 +25,25 @@ fields to the SQL query to retrieve hitting stats like doubles, triples, HRs, et
 implementing them. I then refactored the final printing of the final stats into a separate method as well. I added
 some basic help functions such as '--help' to show proper formatting for dates and team abbreviations. I then added a
 dictionary that has keys of the team abbreviations, which correspond to a nested dictionary with the team city and name.
-The goal is to use this dictionary to print more readable names for the final stat printouts
+The goal is to use this dictionary to print more readable names for the final stat printouts. I later created an AWS
+instance of a MySQL instance, and migrated the data from my local database to there. This should allow for users to
+later download and run this project without needing to set up a local SQL database and all the data.
+
+1/5/2023
+Today, I spent most of the time messing with and setting up the AWS RDS Database instance. I was having a good amount of
+trouble trying to get the user to properly be authenticated and logged in. After getting the IAM Permissions set up for a
+new IAM user (mike_ohtani), I was able to get past the first error and managed to make it to actually trying to connect
+to the DB. Then, I had a permissions error for the actual DB itself. I then logged in as the admin to MySQL, created a
+new user based off the IAM permissions, and finally was able to login and connect to the DB. I confirmed I could query
+with it. It is slower than the local, but it is a good first step to being able to work with AWS, and perhaps offload
+this python program to an AWS instance. For now, I will continue to work on the functionality of the program, and will
+likely revert back to using a local connection for quickness.
+
+1/9/2023
+Today, I spent time with making an overall batting average for teams over the stretch of games signified. This was
+straight forward to do. Then, I decided I wanted to get more specific, game-by-game data for a team to get more detailed
+and specific stats. I decided to do this with the 2002 Anaheim Angels team, who won the World Series that year. I first
+imported all home games the team played in the 2002 regular season. Unfortunately, games where they were visitors will
+be harder to find. I will likely have to convert each teams data file and then import only the data that has the visiting
+team as 'ANA'. This will likely be a long and brute force approach, but I'm hoping I can think of a better and more
+efficient way to get the rows of data I need from each file.

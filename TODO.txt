@@ -6,15 +6,15 @@ Following objectives for this project:
 
 - Format the score for the game to appear in a standard "box score" format - DONE
 
-- Include a -help input to allow people to see acceptable inputs
+- Include a -help input to allow people to see acceptable inputs - DONE
 
 - Allow for a range of dates to find the stats over that time - DONE
 
-- Allow for Team Names and Abbreviations to be acceptable inputs
+- Allow for Team Names and Abbreviations to be acceptable inputs - Changed to require abbreviations for now
 
-- Find the ERA for a specific pitcher over a number of games
+- Find the ERA for a specific pitcher over a number of games - Might not be possible with this dataset
 
-- Find the team batting average over a range of games
+- Find the team batting average over a range of games - DONE
 
 - Find various hitting statistics over a range of games
 

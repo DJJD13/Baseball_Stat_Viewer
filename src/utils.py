@@ -2,6 +2,8 @@ def box_score_generator(result, team):
     total_wins = 0
     tot_runs_scored = 0
     tot_runs_allowed = 0
+    tot_at_bats = 0
+    tot_hits = 0
 
     for baseball_data in result:
         visiting_team = baseball_data[0]
@@ -16,8 +18,6 @@ def box_score_generator(result, team):
         home_hits = baseball_data[13]
         visiting_array = [*visiting_score_line]
         home_array = [*home_score_line]
-
-        stat_returner = []
 
         print(visiting_team + " |", end=" ")
         for score in visiting_array:
@@ -42,16 +42,20 @@ def box_score_generator(result, team):
                 total_wins += 1
             tot_runs_scored += visiting_score
             tot_runs_allowed += home_score
+            tot_at_bats += visiting_at_bats
+            tot_hits += visiting_hits
         else:
             if home_score > visiting_score:
                 total_wins += 1
             tot_runs_scored += home_score
             tot_runs_allowed += visiting_score
+            tot_at_bats += home_at_bats
+            tot_hits += home_hits
 
-    return total_wins, tot_runs_scored, tot_runs_allowed
+    return total_wins, tot_runs_scored, tot_runs_allowed, tot_at_bats, tot_hits
 
 
-def total_stat_printer(total_games, wins, runs_scored, runs_allowed):
+def total_stat_printer(total_games, wins, runs_scored, runs_allowed, at_bats, hits):
     print("Record over " + str(total_games) + " games: " + str(wins) + " - " + str(total_games - wins))
     print()
     print("Total runs scored: " + str(runs_scored))
@@ -62,3 +66,4 @@ def total_stat_printer(total_games, wins, runs_scored, runs_allowed):
     print("Average runs scored against over " + str(total_games) + " games: " + str(
         round(runs_allowed / total_games, 2)))
     print()
+    print("Batting average over " + str(total_games) + " : " + str(round(hits / at_bats, 3)))
