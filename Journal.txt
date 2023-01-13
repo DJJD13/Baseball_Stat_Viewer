@@ -47,3 +47,17 @@ imported all home games the team played in the 2002 regular season. Unfortunatel
 be harder to find. I will likely have to convert each teams data file and then import only the data that has the visiting
 team as 'ANA'. This will likely be a long and brute force approach, but I'm hoping I can think of a better and more
 efficient way to get the rows of data I need from each file.
+
+1/11/2023
+Today, I imported all the game play-by-play data into a single DB for the 2002 season. My intentions are to use this
+"smaller" dataset to practice getting meaningful stats for players for this season alone. Eventually, I would like to
+add more seasons as tables as I improve in querying and generating data. I have also begun looking into the possibility
+of using Stathead to start pulling data for not just baseball, but other sports as well for data exploration and stat
+generation.
+
+1/12/2023
+Today, I added a lot of the code for generating stats for players in the 2002 season based on their RetroSheet player id.
+It was a lot of just flat out writing, and having to look up the formulas for the stats. After finishing the calculations,
+I checked my calculated stats against the real stats on Stathead, and verified they all matched. I had a small issue
+where when first running it, I hadn't accounted for one event_type resulting in stats being off by .001, which with
+baseball stats  is a big deal. I fixed the issue, and I am keeping an eye out for any future minor differences.
